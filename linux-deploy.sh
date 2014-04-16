@@ -1,5 +1,5 @@
 #!/bin/bash
 
-for d in dot.vim  dot.vimrc  dot.vimrc-lang-remap; do
-    ls -d $d
-done
+cp -r dot.vim ~/.vim
+cp dot.vimrc ~/.vimrc
+cp dot.vimrc-lang-remap ~/.vimrc-lang-remap

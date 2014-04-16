@@ -1,0 +1,8 @@
+data/doc/tests/BoldAndListsAmbiguity.creole.i
+data/syntax/creole.vim.i
+data/doc/tests/ItalicsAndUrlAmbiguity.creole.i
+data/README.creole.i
+data/.hgtags.i
+data/doc/tests/mine.creole.i
+data/doc/tests/creole1.0test.creole.i
+data/ftdetect/creole.vim.i

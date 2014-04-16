@@ -1,0 +1,10 @@
+syntax:glob
+.gitignore
+*~
+*.md
+*.zip
+note.txt
+tmp/*
+tags
+syntax:regexp
+^\.git/

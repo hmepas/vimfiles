@@ -1,0 +1,162 @@
+# #!/usr/bin/perl
+snippet #!
+	#!/usr/bin/perl
+	
+	use strict;
+	use warnings;
+	use utf8;
+# Hash Pointer
+snippet .
+	 =>
+# Function
+snippet sub
+	sub ${1:function_name} {
+		${2:#body ...}
+	}
+# Conditional
+snippet if
+	if (${1}) {
+		${2:# body...}
+	}
+# Conditional if..else
+snippet ife
+	if (${1}) {
+		${2:# body...}
+	} else {
+		${3:# else...}
+	}
+# Conditional if..elsif..else
+snippet ifee
+	if (${1}) {
+		${2:# body...}
+	} elsif (${3}) {
+		${4:# elsif...}
+	} else {
+		${5:# else...}
+	}
+# Conditional One-line
+snippet xif
+	${1:expression} if ${2:condition};${3}
+# Unless conditional
+snippet unless
+	unless (${1}) {
+		${2:# body...}
+	}
+# Unless conditional One-line
+snippet xunless
+	${1:expression} unless ${2:condition};${3}
+# Try/Except
+snippet eval
+	eval {
+		${1:# do something risky...}
+	};
+	if ($@) {
+		${2:# handle failure...}
+	}
+# While Loop
+snippet wh
+	while (${1}) {
+		${2:# body...}
+	}
+# While Loop One-line
+snippet xwh
+	${1:expression} while ${2:condition};${3}
+# For Loop
+snippet for
+	for (my $${2:var} = 0; $$2 < ${1:count}; $$2${3:++}) {
+		${4:# body...}
+	}
+# Foreach Loop
+snippet fore
+	foreach my $${1:x} (@${2:array}) {
+		${3:# body...}
+	}
+# Foreach Loop One-line
+snippet xfore
+	${1:expression} foreach @${2:array};${3}
+# Package
+snippet cl
+	package ${1:ClassName};
+	
+	use strict;
+	use warnings;
+	use utf8;
+
+	use base qw(${2:ParentClass});
+	
+	sub new {
+		my $class = shift;
+		$class = ref $class if ref $class;
+		my $self = bless {}, $class;
+		$self;
+	}
+	
+	1;${3}
+# Read File
+snippet slurp
+	my $${1:var};
+	{ local $/ = undef; local *FILE; open FILE, "<${2:file}"; $$1 = <FILE>; close FILE }${3}
+snippet pod
+	=pod
+
+	    $Id:$
+
+	=head1 NAME
+
+	    ${1:name}
+
+	=head1 SYNOPSIS
+
+	    ${2:use_example}
+
+	=head1 DESCRIPTION
+
+	    ${3:desc}
+
+	=head1 METHODS
+
+	=cut
+snippet package
+	package ${1:name};
+
+	use strict;
+	use warnings;
+	use utf8;
+
+	1;
+
+	__END__
+snippet mouse
+	package ${1:ClassName};
+	
+	use strict;
+	use warnings;
+	use utf8;
+
+	=pod
+
+	    $Id:$
+
+	=head1 NAME
+
+	    ${2:ClassName}
+
+	=head1 SYNOPSIS
+
+	    ${2:use_example}
+
+	=head1 DESCRIPTION
+
+	    ${3:desc}
+
+	=head1 METHODS
+
+	=cut
+
+	use Mouse;
+
+	__PACKAGE__->meta->make_immutable();
+
+	1;
+
+	__END__

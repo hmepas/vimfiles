@@ -1,0 +1,4 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =2
+let g:netrw_dirhist_1='/var/www/beta.hmepas.8179/protected/API/Methods/Keyword'
+let g:netrw_dirhist_2='/var/www/beta.hmepas.8177/api/services/v5/API/Service/AdGroups'

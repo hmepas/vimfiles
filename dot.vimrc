@@ -2,6 +2,13 @@
 
 set nocompatible
 
+" VUNDLE SETUP
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Plugin 'altercation/vim-colors-solarized'
+" / VUNDLE SETUP
+
 " ORDER IS MATTER, THIS OPTION SHOULD BE FIRST TO AVOID 
 " UNECCESSARY CONVERSIONS WHICH COULD BE BROKEN
 set encoding=utf-8

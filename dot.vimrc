@@ -39,8 +39,12 @@ if has("gui_running")
     set columns=114
     set lines=40
 " Font
-    set guifont=Lucida_Console:h10:cDEFAULT
-    set guifontwide=Lucida_Console:h9:cDEFAULT
+    "set guifont=Lucida_Console:h10:cDEFAULT
+    "set guifontwide=Lucida_Console:h9:cDEFAULT
+    "set guifont=Consolas:h11:cDEFAULT
+    "set guifontwide=Consolas:h9:cDEFAULT
+    set guifont=DejaVu_LGC_Sans_Mono:h11:cRUSSIAN
+    set guifontwide=DejaVu_LGC_Sans_Mono:h11:b:cRUSSIAN
 endif
 
 " MINE

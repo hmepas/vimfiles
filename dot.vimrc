@@ -185,9 +185,23 @@ let mapleader=","
 map <Leader>vp :VimuxPromptCommand<CR>
 map <Leader>vi :VimuxInspectRunner<CR>
 map <Leader>vz :call VimuxZoomRunner()<CR>
+map <Leader>vq :VimuxCloseRunner<CR>
 
 " Pathogen launch
 execute pathogen#infect()
+
+" buffers navigation
+map <Leader>n :bn<CR>
+map <Leader>b :bp<CR>
+map <Leader>1 :b 1<CR>
+map <Leader>2 :b 2<CR>
+map <Leader>3 :b 3<CR>
+map <Leader>4 :b 4<CR>
+map <Leader>5 :b 5<CR>
+map <Leader>6 :b 6<CR>
+map <Leader>7 :b 7<CR>
+map <Leader>8 :b 8<CR>
+map <Leader>9 :b 9<CR>
 
 source $HOME/.vimrc-lang-remap
 colors solarized

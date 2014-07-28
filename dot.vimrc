@@ -7,6 +7,7 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'benmills/vimux'
 " / VUNDLE SETUP
 
 " ORDER IS MATTER, THIS OPTION SHOULD BE FIRST TO AVOID 
@@ -177,6 +178,13 @@ let g:user_zen_settings = {
 \    'extends' : 'html',
 \  },
 \}
+
+let mapleader=","
+
+" Vimux
+map <Leader>vp :VimuxPromptCommand<CR>
+map <Leader>vi :VimuxInspectRunner<CR>
+map <Leader>vz :call VimuxZoomRunner()<CR>
 
 " Pathogen launch
 execute pathogen#infect()

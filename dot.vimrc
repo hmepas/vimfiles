@@ -8,6 +8,11 @@ call vundle#rc()
 
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'benmills/vimux'
+Plugin 'scrooloose/syntastic'
+
+" Syntastic check
+let g:syntastic_perl_checkers = ['perl']
+let g:syntastic_enable_perl_checker = 1
 " / VUNDLE SETUP
 
 " ORDER IS MATTER, THIS OPTION SHOULD BE FIRST TO AVOID 

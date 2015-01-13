@@ -9,6 +9,7 @@ call vundle#rc()
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'benmills/vimux'
 Plugin 'scrooloose/syntastic'
+Plugin 'git://repo.or.cz/vcscommand'
 
 " Syntastic check
 let g:syntastic_perl_checkers = ['perl']
@@ -81,6 +82,7 @@ let perl_include_pod = 1
 let perl_want_scope_in_variables = 1
 
 let Tlist_Inc_Winwidth = 0
+au FileType perl TlistUpdate
 map <F3> :Tlist<CR>
 
 "colors torte
@@ -163,7 +165,10 @@ if has('statusline')
         set statusline+=\ [%{&ff}/%Y]            " filetype
         "set statusline+=\ [%{getcwd()}]          " current dir
         set statusline+=\ [0x\%02.2B\ \U+%04B] " ASCII / Hexadecimal value of char
+        "set statusline+=\ [%{Tlist_Get_Tagname_By_Line(bufname(%), getline('.'))}] " current method
+        set statusline+=\ %{Tlist_Get_Tagname_By_Line()}() " current method
         set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
+
         let g:ctags_statusline=1
         let g:ctags_title=1
 endif

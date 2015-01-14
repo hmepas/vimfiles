@@ -32,6 +32,7 @@ function FixPerlIncludes()
 endfunction
 
 au FileType perl call FixPerlIncludes()
+au FileType perl let g:syntastic_auto_loc_list = 1
 
 " airline
 let g:airline#extensions#tabline#enabled = 1

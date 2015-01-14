@@ -9,14 +9,51 @@ call vundle#rc()
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'benmills/vimux'
 Plugin 'scrooloose/syntastic'
+Plugin 'bling/vim-airline'
+Plugin 'majutsushi/tagbar'
+Plugin 'kien/ctrlp.vim'
 Plugin 'git://repo.or.cz/vcscommand'
+
+filetype plugin on
 
 " Syntastic check
 let g:syntastic_perl_checkers = ['perl']
 let g:syntastic_enable_perl_checker = 1
+let g:syntastic_enable_signs = 1
+let g:syntastic_error_symbol = "✗"
+let g:syntastic_warning_symbol = "⚠"
+
+function FixPerlIncludes()
+    if filereadable(expand("~/bin/perl_incl"))
+        let perl_paths_string = system("~/bin/perl_incl " . expand('%:p'))
+        echom perl_paths_string
+        let g:syntastic_perl_lib_path = split(perl_paths_string, ';')
+    endif
+endfunction
+
+au FileType perl call FixPerlIncludes()
+
+" airline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:airline#extensions#tabline#fnamecollapse = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+let g:airline#extensions#tabline#buffer_min_count = 2
+
+let g:airline#extensions#syntastic#enabled = 1
+
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#whitespace#checks = []
+
+let g:airline_powerline_fonts = 1
+
+"let g:airline_theme = "hybrid"
+"let g:airline_theme = "luna"
+let g:airline_theme = "lucius"
+
 " / VUNDLE SETUP
 
-" ORDER IS MATTER, THIS OPTION SHOULD BE FIRST TO AVOID 
+" ORDER IS MATTER, THIS OPTION SHOULD BE FIRST TO AVOID
 " UNECCESSARY CONVERSIONS WHICH COULD BE BROKEN
 set encoding=utf-8
 scriptencoding utf-8
@@ -82,7 +119,7 @@ let perl_include_pod = 1
 let perl_want_scope_in_variables = 1
 
 let Tlist_Inc_Winwidth = 0
-au FileType perl TlistUpdate
+"au FileType perl TlistUpdate " if we want current sub without statusline-air
 map <F3> :Tlist<CR>
 
 "colors torte
@@ -94,7 +131,6 @@ let g:solarized_contrast = "normal"
 
 set nobackup
 
-filetype plugin on
 
 " switch for search higlighting
 set hlsearch!
@@ -102,7 +138,7 @@ nnoremap <F7> :set hlsearch!<CR>
 
 
 " To avoid permission change
-" http://vimdoc.sourceforge.net/htmldoc/vimfaq.html 
+" http://vimdoc.sourceforge.net/htmldoc/vimfaq.html
 " 7.3. issue
 set backupcopy=yes
 
@@ -149,7 +185,7 @@ set nojoinspaces
 
 " visual shifting (does not exit Visual mode)
 vnoremap < <gv
-vnoremap > >gv 
+vnoremap > >gv
 
 " autowrap comments
 set formatoptions-=c

@@ -1,0 +1,32 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+use utf8;
+
+use DDP;
+
+my $for_file = $ARGV[0];
+
+my @inc_paths;
+
+open my $l, '>', '/home/hmepas/sync-log';
+print $l p @ARGV;
+
+if($for_file =~ m~(/var/www/beta.hmepas.9180)/(.+?)$~) {
+    my $dir = $1;
+    my $file = $2;
+    push @inc_paths,
+        "$dir/protected",
+        "$dir/perl/settings",
+        "$dir/perl/rbac-elementary";
+
+    if($file =~ m!^api/lib! || $file =~ m!^api/services!) {
+        push @inc_paths,
+            "$dir/api/lib",
+            "$dir/api/services/v5";
+    }
+}
+
+print $l join(';', @inc_paths), "\n";
+print join(';', @inc_paths);

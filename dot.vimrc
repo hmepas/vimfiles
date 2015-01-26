@@ -52,6 +52,9 @@ let g:airline_powerline_fonts = 1
 "let g:airline_theme = "luna"
 let g:airline_theme = "lucius"
 
+" CtrlP
+nnoremap <c-P> :CtrlPTag<CR>
+
 " / VUNDLE SETUP
 
 " ORDER IS MATTER, THIS OPTION SHOULD BE FIRST TO AVOID

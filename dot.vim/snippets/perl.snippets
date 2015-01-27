@@ -96,7 +96,7 @@ snippet cl
 snippet slurp
 	my $${1:var};
 	{ local $/ = undef; local *FILE; open FILE, "<${2:file}"; $$1 = <FILE>; close FILE }${3}
-snippet pod
+snippet =pod
 	=pod
 
 	    $Id:$
@@ -160,3 +160,9 @@ snippet mouse
 	1;
 
 	__END__
+
+snippet dd
+	use Data::Dumper; $Data::Dumper::Deparse = 1; warn "${1:title} " . Dumper {
+		${2:data}
+	};
+

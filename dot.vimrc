@@ -54,6 +54,7 @@ let g:airline_theme = "lucius"
 
 " CtrlP
 nnoremap <c-P> :CtrlPTag<CR>
+let g:ctrlp_max_depth = 20
 
 " / VUNDLE SETUP
 
@@ -244,15 +245,27 @@ execute pathogen#infect()
 " buffers navigation
 map <Leader>n :bn<CR>
 map <Leader>b :bp<CR>
-map <Leader>1 :b 1<CR>
-map <Leader>2 :b 2<CR>
-map <Leader>3 :b 3<CR>
-map <Leader>4 :b 4<CR>
-map <Leader>5 :b 5<CR>
-map <Leader>6 :b 6<CR>
-map <Leader>7 :b 7<CR>
-map <Leader>8 :b 8<CR>
-map <Leader>9 :b 9<CR>
+if g:airline#extensions#tabline#enabled
+    nmap <leader>1 <Plug>AirlineSelectTab1
+    nmap <leader>2 <Plug>AirlineSelectTab2
+    nmap <leader>3 <Plug>AirlineSelectTab3
+    nmap <leader>4 <Plug>AirlineSelectTab4
+    nmap <leader>5 <Plug>AirlineSelectTab5
+    nmap <leader>6 <Plug>AirlineSelectTab6
+    nmap <leader>7 <Plug>AirlineSelectTab7
+    nmap <leader>8 <Plug>AirlineSelectTab8
+    nmap <leader>9 <Plug>AirlineSelectTab9
+else
+    nmap <Leader>1 :b 1<CR>
+    nmap <Leader>2 :b 2<CR>
+    nmap <Leader>3 :b 3<CR>
+    nmap <Leader>4 :b 4<CR>
+    nmap <Leader>5 :b 5<CR>
+    nmap <Leader>6 :b 6<CR>
+    nmap <Leader>7 :b 7<CR>
+    nmap <Leader>8 :b 8<CR>
+    nmap <Leader>9 :b 9<CR>
+endif
 
 source $HOME/.vimrc-lang-remap
 colors solarized

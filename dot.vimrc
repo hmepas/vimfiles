@@ -26,7 +26,7 @@ let g:syntastic_warning_symbol = "⚠"
 function FixPerlIncludes()
     if filereadable(expand("~/bin/perl_incl"))
         let perl_paths_string = system("~/bin/perl_incl " . expand('%:p'))
-        echom perl_paths_string
+"        echom perl_paths_string
         let g:syntastic_perl_lib_path = split(perl_paths_string, ';')
     endif
 endfunction
@@ -55,6 +55,8 @@ let g:airline_theme = "lucius"
 " CtrlP
 nnoremap <c-P> :CtrlPTag<CR>
 let g:ctrlp_max_depth = 20
+let g:ctrlp_max_files = 0
+au Filetype perl let g:ctrlp_user_command = 'find %s -type f | grep "\.pl$\|\.pm$"'
 
 " / VUNDLE SETUP
 
@@ -266,6 +268,10 @@ else
     nmap <Leader>8 :b 8<CR>
     nmap <Leader>9 :b 9<CR>
 endif
+
+" highlight word under cursor
+autocmd CursorMoved * exe exists("HlUnderCursor")?HlUnderCursor?printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\')):'match none':""
+nnoremap <silent> <F4> :exe "let HlUnderCursor=exists(\"HlUnderCursor\")?HlUnderCursor*-1+1:1"<CR>
 
 source $HOME/.vimrc-lang-remap
 colors solarized

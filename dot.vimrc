@@ -84,6 +84,8 @@ set ruler
 set selection=exclusive
 set whichwrap=b,s,<,>,[,]
 
+set mouse=a
+
 if has("gui_running")
     set selectmode=mouse,key
     set window=78

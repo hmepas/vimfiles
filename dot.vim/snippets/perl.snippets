@@ -161,8 +161,19 @@ snippet mouse
 
 	__END__
 
+snippet ddp
+	use DDP; warn p ${2:data};
+
 snippet dd
-	use Data::Dumper; $Data::Dumper::Deparse = 1; warn "${1:title} " . Dumper {
-		${2:data}
+	use Data::Dumper; $Data::Dumper::Deparse = 1; warn "${1:name} " . Dumper ${2:data};
+
+snippet dda
+	use Data::Dumper; $Data::Dumper::Deparse = 1; warn Dumper [
+		${1:data}
+	];
+
+snippet ddh
+	use Data::Dumper; $Data::Dumper::Deparse = 1; warn Dumper {
+		${1:data}
 	};
 

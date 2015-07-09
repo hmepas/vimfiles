@@ -252,7 +252,7 @@ execute pathogen#infect()
 
 " buffers navigation
 map <Leader>n :bn<CR>
-map <Leader>b :bp<CR>
+map <Leader>p :bp<CR>
 if g:airline#extensions#tabline#enabled
     nmap <leader>1 <Plug>AirlineSelectTab1
     nmap <leader>2 <Plug>AirlineSelectTab2

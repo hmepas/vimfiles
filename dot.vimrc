@@ -158,6 +158,7 @@ set backupcopy=yes
 "HTML::Mason syntax enable
 au BufNewFile,BufRead *.msn set ft=mason
 au Filetype mason set foldmethod=manual
+au Filetype xml set iskeyword=@,48-57,_,192-255
 
 " some tweaks for xml.vim
 let xml_use_xhtml = 1

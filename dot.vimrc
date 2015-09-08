@@ -13,6 +13,7 @@ Plugin 'bling/vim-airline'
 Plugin 'majutsushi/tagbar'
 Plugin 'kien/ctrlp.vim'
 Plugin 'git://repo.or.cz/vcscommand'
+Plugin 'junkblocker/patchreview-vim'
 
 filetype plugin on
 
@@ -127,9 +128,10 @@ set softtabstop=4
 
 set pastetoggle=<F2>
 
-let perl_fold=1
+let perl_fold = 1
 let perl_include_pod = 1
 let perl_want_scope_in_variables = 1
+let xml_syntax_folding = 1
 
 let Tlist_Inc_Winwidth = 0
 "au FileType perl TlistUpdate " if we want current sub without statusline-air
@@ -158,7 +160,8 @@ set backupcopy=yes
 "HTML::Mason syntax enable
 au BufNewFile,BufRead *.msn set ft=mason
 au Filetype mason set foldmethod=manual
-au Filetype xml set iskeyword=@,48-57,_,192-255
+au Filetype xml set iskeyword=@,48-57,_,192-255 " no : symbol
+au Filetype xml set foldmethod=syntax
 
 " some tweaks for xml.vim
 let xml_use_xhtml = 1

@@ -98,6 +98,7 @@ snippet slurp
 	{ local $/ = undef; local *FILE; open FILE, "<${2:file}"; $$1 = <FILE>; close FILE }${3}
 snippet =pod
 	=pod
+
 	=encoding utf8
 
 	    $Id:$

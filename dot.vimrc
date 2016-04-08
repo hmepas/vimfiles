@@ -102,8 +102,10 @@ if has("gui_running")
     "set guifontwide=Lucida_Console:h9:cDEFAULT
     "set guifont=Consolas:h11:cDEFAULT
     "set guifontwide=Consolas:h9:cDEFAULT
-    set guifont=DejaVu_LGC_Sans_Mono:h11:cRUSSIAN
-    set guifontwide=DejaVu_LGC_Sans_Mono:h11:b:cRUSSIAN
+    "set guifont=DejaVu_LGC_Sans_Mono:h11:cRUSSIAN
+    "set guifontwide=DejaVu_LGC_Sans_Mono:h11:b:cRUSSIAN
+    set guifont=DejaVu_Sans_Mono_for_Powerline:h12
+    set guifontwide=DejaVu_Sans_Mono_Bold_for_Powerline:h12
 endif
 
 " MINE

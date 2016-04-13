@@ -10,10 +10,12 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'benmills/vimux'
 Plugin 'scrooloose/syntastic'
 Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'majutsushi/tagbar'
 Plugin 'kien/ctrlp.vim'
 Plugin 'git://repo.or.cz/vcscommand'
 Plugin 'dbakker/vim-projectroot.git'
+Plugin 'junkblocker/patchreview-vim'
 
 filetype plugin on
 
@@ -23,11 +25,15 @@ let g:syntastic_enable_perl_checker = 1
 let g:syntastic_enable_signs = 1
 let g:syntastic_error_symbol = "✗"
 let g:syntastic_warning_symbol = "⚠"
+command Scheck :SyntasticToggleMode
+command Blame :VCSBlame
+
+
 
 function FixPerlIncludes()
     if filereadable(expand("~/bin/perl_incl"))
         let perl_paths_string = system("~/bin/perl_incl " . expand('%:p'))
-        echom perl_paths_string
+"        echom perl_paths_string
         let g:syntastic_perl_lib_path = split(perl_paths_string, ';')
     endif
 endfunction
@@ -70,6 +76,8 @@ let g:airline_theme = "lucius"
 " CtrlP
 nnoremap <c-P> :CtrlPTag<CR>
 let g:ctrlp_max_depth = 20
+let g:ctrlp_max_files = 0
+au Filetype perl let g:ctrlp_user_command = 'find %s -type f | grep "\.pl$\|\.pm$"'
 
 " / VUNDLE SETUP
 
@@ -97,6 +105,8 @@ set ruler
 set selection=exclusive
 set whichwrap=b,s,<,>,[,]
 
+set mouse=a
+
 if has("gui_running")
     set selectmode=mouse,key
     set window=78
@@ -107,8 +117,10 @@ if has("gui_running")
     "set guifontwide=Lucida_Console:h9:cDEFAULT
     "set guifont=Consolas:h11:cDEFAULT
     "set guifontwide=Consolas:h9:cDEFAULT
-    set guifont=DejaVu_LGC_Sans_Mono:h11:cRUSSIAN
-    set guifontwide=DejaVu_LGC_Sans_Mono:h11:b:cRUSSIAN
+    "set guifont=DejaVu_LGC_Sans_Mono:h11:cRUSSIAN
+    "set guifontwide=DejaVu_LGC_Sans_Mono:h11:b:cRUSSIAN
+    set guifont=DejaVu_Sans_Mono_for_Powerline:h12
+    set guifontwide=DejaVu_Sans_Mono_Bold_for_Powerline:h12
 endif
 
 " MINE
@@ -134,9 +146,10 @@ set softtabstop=4
 
 set pastetoggle=<F2>
 
-let perl_fold=1
+let perl_fold = 1
 let perl_include_pod = 1
 let perl_want_scope_in_variables = 1
+let xml_syntax_folding = 1
 
 let Tlist_Inc_Winwidth = 0
 "au FileType perl TlistUpdate " if we want current sub without statusline-air
@@ -165,6 +178,8 @@ set backupcopy=yes
 "HTML::Mason syntax enable
 au BufNewFile,BufRead *.msn set ft=mason
 au Filetype mason set foldmethod=manual
+au Filetype xml set iskeyword=@,48-57,_,192-255 " no : symbol
+au Filetype xml set foldmethod=syntax
 
 " some tweaks for xml.vim
 let xml_use_xhtml = 1
@@ -259,7 +274,7 @@ execute pathogen#infect()
 
 " buffers navigation
 map <Leader>n :bn<CR>
-map <Leader>b :bp<CR>
+map <Leader>p :bp<CR>
 if g:airline#extensions#tabline#enabled
     nmap <leader>1 <Plug>AirlineSelectTab1
     nmap <leader>2 <Plug>AirlineSelectTab2
@@ -281,6 +296,10 @@ else
     nmap <Leader>8 :b 8<CR>
     nmap <Leader>9 :b 9<CR>
 endif
+
+" highlight word under cursor
+autocmd CursorMoved * exe exists("HlUnderCursor")?HlUnderCursor?printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\')):'match none':""
+nnoremap <silent> <F4> :exe "let HlUnderCursor=exists(\"HlUnderCursor\")?HlUnderCursor*-1+1:1"<CR>
 
 source $HOME/.vimrc-lang-remap
 colors solarized

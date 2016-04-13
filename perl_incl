@@ -13,18 +13,17 @@ my @inc_paths;
 open my $l, '>', '/home/hmepas/sync-log';
 print $l p @ARGV;
 
-if($for_file =~ m~(/var/www/beta.hmepas.9180)/(.+?)$~) {
+if($for_file =~ m~(/some-mojo-project-regexp)/(.+?)$~) {
     my $dir = $1;
     my $file = $2;
     push @inc_paths,
-        "$dir/protected",
-        "$dir/perl/settings",
-        "$dir/perl/rbac-elementary";
+        "$dir/libs",
+        "$dir/local-libs";
 
     if($file =~ m!^api/lib! || $file =~ m!^api/services!) {
         push @inc_paths,
             "$dir/api/lib",
-            "$dir/api/services/v5";
+            "$dir/api/services/";
     }
 }
 

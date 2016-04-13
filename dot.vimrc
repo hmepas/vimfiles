@@ -42,12 +42,12 @@ au FileType perl call FixPerlIncludes()
 au FileType perl let g:syntastic_auto_loc_list = 1
 " use dbakker/vim-projectroot.git
 au FileType perl call SetTags()
+
 function SetTags()
     if filereadable('./tags')
         let &tags='./tags'
     else
         let pr_tags = ProjectRootGuess().'/tags'
-        echo pr_tags
         if filereadable(pr_tags)
             let &tags=pr_tags
         endif

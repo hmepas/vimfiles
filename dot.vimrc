@@ -13,6 +13,7 @@ Plugin 'bling/vim-airline'
 Plugin 'majutsushi/tagbar'
 Plugin 'kien/ctrlp.vim'
 Plugin 'git://repo.or.cz/vcscommand'
+Plugin 'dbakker/vim-projectroot.git'
 
 filetype plugin on
 
@@ -33,6 +34,20 @@ endfunction
 
 au FileType perl call FixPerlIncludes()
 au FileType perl let g:syntastic_auto_loc_list = 1
+" use dbakker/vim-projectroot.git
+au FileType perl call SetTags()
+function SetTags()
+    if filereadable('./tags')
+        let &tags='./tags'
+    else
+        let pr_tags = ProjectRootGuess().'/tags'
+        echo pr_tags
+        if filereadable(pr_tags)
+            let &tags=pr_tags
+        endif
+    endif
+endfunction
+
 
 " airline
 let g:airline#extensions#tabline#enabled = 1

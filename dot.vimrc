@@ -151,9 +151,17 @@ let perl_include_pod = 1
 let perl_want_scope_in_variables = 1
 let xml_syntax_folding = 1
 
-let Tlist_Inc_Winwidth = 0
+" let Tlist_Inc_Winwidth = 0
 "au FileType perl TlistUpdate " if we want current sub without statusline-air
-map <F3> :Tlist<CR>
+"
+" Tagbar
+" map <F3> :TList<CR>
+nnoremap <silent> <F3> :TagbarOpenAutoClose<CR>
+let g:tagbar_left = 1
+let g:tagbar_compact = 1
+let g:tagbar_singleclick = 1
+let g:tagbar_autopreview = 1
+
 
 "colors torte
 

@@ -45,9 +45,9 @@ au FileType perl call SetTags()
 
 function SetTags()
     if filereadable('./tags')
-        let &tags='./tags'
+        let &tags='./tags;'
     else
-        let pr_tags = ProjectRootGuess().'/tags'
+        let pr_tags = ProjectRootGuess().'/tags;'
         if filereadable(pr_tags)
             let &tags=pr_tags
         endif

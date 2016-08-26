@@ -307,6 +307,13 @@ else
     nmap <Leader>9 :b 9<CR>
 endif
 
+command CpMode call CpMode()
+function CpMode()
+    set nolist
+    set nonu
+    execute ':ShowMarksToggle'
+endfunction
+
 " highlight word under cursor
 autocmd CursorMoved * exe exists("HlUnderCursor")?HlUnderCursor?printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\')):'match none':""
 nnoremap <silent> <F4> :exe "let HlUnderCursor=exists(\"HlUnderCursor\")?HlUnderCursor*-1+1:1"<CR>

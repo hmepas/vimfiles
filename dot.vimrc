@@ -322,7 +322,7 @@ source $HOME/.vimrc-lang-remap
 colors solarized
 
 " ShowMarks with solarized
-"hi! Visual .s:fmt_none .s:fg_none .s:bg_base02
+hi Visual cterm=NONE ctermbg=0 ctermfg=NONE guibg=Grey40
 " ShowMarks support, better looking SignColumn
 hi! link SignColumn   LineNr
 hi! link ShowMarksHLl DiffAdd
@@ -336,16 +336,8 @@ hi! link PMenuSel DiffChange
 hi! link PMenuSbar DiffAdd
 hi! link PMenuThumb DiffAdd
 
-" Customizations by @skwp for better readability
-" If statements and def statements should look similar 
-" so you can see the flow 
-hi! link rubyDefine rubyControl
-
 " This is a better cursor
 hi! link Cursor VisualNOS
-
-" Search is way too distracting in original Solarized
-hi! link Search DiffAdd
 
 " Colors to make LustyJuggler more usable
 " the Question color in LustyJuggler is mapped to
@@ -360,26 +352,11 @@ hi! link specFunctions rubyDefine
 hi! link specMatcher rubyConstant
 hi! link specSpys rubyConstant
 
-" Ruby, slightly better colors for solarized
-hi! link rubyStringDelimiter rubyConstant
-hi! link rubyInterpolationDelimiter rubyConstant
-hi! link rubySymbol Structure
-
-" For R and other languages that use Delimiters, we don't want them red
-hi! link Delimiter Identifier
-hi! link rDollar Identifier
-
 " For vimscript, don' tlike red..
 hi! link vimMapModKey Operator
 hi! link vimNotation Label
 
 " Better json highlighting
 hi! link htmlArg Label
-
-" Better indication of current buffer
-hi! link StatusLine DiffChange
-hi! link StatusLineNC DiffAdd
-
-hi! VertSplit guifg=#002b36  guibg=#002b36
 
 

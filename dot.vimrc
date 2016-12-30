@@ -321,6 +321,24 @@ nnoremap <silent> <F4> :exe "let HlUnderCursor=exists(\"HlUnderCursor\")?HlUnder
 source $HOME/.vimrc-lang-remap
 colors solarized
 
+" speedup stuff
+" do
+" :syntax off
+" :set synmaxcol=120
+" if nothing helps
+set synmaxcol=256
+set ttyfast " u got a fast terminal
+set ttyscroll=3
+set lazyredraw " to avoid scrolling problems
+
+" speedup method for that
+command Speed call Speed()
+function Speed()
+    set nocursorline
+    execute ':syntax off'
+endfunction
+" / speedup stuff
+
 " ShowMarks with solarized
 hi Visual cterm=NONE ctermbg=0 ctermfg=NONE guibg=Grey40
 " ShowMarks support, better looking SignColumn

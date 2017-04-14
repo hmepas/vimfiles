@@ -76,7 +76,8 @@ let g:airline_theme = "lucius"
 nnoremap <c-P> :CtrlPTag<CR>
 let g:ctrlp_max_depth = 20
 let g:ctrlp_max_files = 0
-au Filetype perl let g:ctrlp_user_command = 'find %s -type f | grep "\.pl$\|\.pm$"'
+let g:ctrlp_clear_cache_on_exit=0
+au Filetype perl let g:ctrlp_user_command = 'find %s -type f -regextype posix-basic -regex ".\+\.p[ml]"'
 
 " / VUNDLE SETUP
 

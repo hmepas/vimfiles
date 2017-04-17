@@ -16,7 +16,8 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'git://repo.or.cz/vcscommand'
 Plugin 'dbakker/vim-projectroot.git'
 Plugin 'junkblocker/patchreview-vim'
-Plugin 'vim-scripts/ShowMarks'
+Plugin 'mileszs/ack.vim'
+Plugin 'jeetsukumaran/vim-markology'
 
 filetype plugin on
 
@@ -53,6 +54,13 @@ function SetTags()
     endif
 endfunction
 
+" mileszs/ack.vim plugin ag support
+let g:ackprg = 'ag --vimgrep --smart-case'
+cnoreabbrev ag Ack
+cnoreabbrev aG Ack
+cnoreabbrev Ag Ack
+cnoreabbrev AG Ack
+" / end of mileszs/ack.vim settings
 
 " airline
 let g:airline#extensions#tabline#enabled = 1
@@ -322,7 +330,7 @@ command CpMode call CpMode()
 function CpMode()
     set nolist
     set nonu
-    execute ':ShowMarksToggle'
+    execute ':MarkologyDisable'
 endfunction
 
 " highlight word under cursor

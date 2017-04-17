@@ -360,12 +360,13 @@ endfunction
 
 " ShowMarks with solarized
 hi Visual cterm=NONE ctermbg=0 ctermfg=NONE guibg=Grey40
-" ShowMarks support, better looking SignColumn
+
+" Markology support, better looking SignColumn
 hi! link SignColumn   LineNr
-hi! link ShowMarksHLl DiffAdd
-hi! link ShowMarksHLu DiffChange
-hi! link ShowMarksHLo DiffAdd
-hi! link ShowMarksHLm DiffChange
+hi! link MarkologyHLl DiffAdd
+hi! link MarkologyHLu DiffChange
+hi! link MarkologyHLo DiffAdd
+hi! link MarkologyHLm DiffChange
 
 " Better looking popup menu (for omnicomplete)
 hi! link PMenu DiffAdd

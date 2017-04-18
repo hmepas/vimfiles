@@ -55,7 +55,9 @@ function SetTags()
 endfunction
 
 " mileszs/ack.vim plugin ag support
-let g:ackprg = 'ag --vimgrep --smart-case'
+if executable('ag') == 1
+    let g:ackprg = 'ag --vimgrep --smart-case'
+endif
 cnoreabbrev ag Ack
 cnoreabbrev aG Ack
 cnoreabbrev Ag Ack
@@ -85,7 +87,7 @@ nnoremap <c-P> :CtrlPTag<CR>
 let g:ctrlp_max_depth = 20
 let g:ctrlp_max_files = 0
 if executable('ag') == 1
-let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
+    let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
       \ --ignore .git
       \ --ignore .svn
       \ --ignore .hg

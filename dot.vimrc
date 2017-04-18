@@ -177,7 +177,15 @@ let xml_syntax_folding = 1
 "
 " Tagbar
 " map <F3> :TList<CR>
-nnoremap <silent> <F3> :TagbarOpenAutoClose<CR>
+nnoremap <silent> <F3> :call TagbarSmartToggle()<CR>
+function TagbarSmartToggle()
+    let tagbarwinnr = bufwinnr("__Tagbar__")
+    if tagbarwinnr != -1
+        execute ':TagbarClose'
+    else
+        execute ':TagbarOpenAutoClose'
+    endif
+endfunction
 let g:tagbar_left = 1
 let g:tagbar_compact = 1
 let g:tagbar_singleclick = 1

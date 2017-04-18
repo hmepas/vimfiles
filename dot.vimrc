@@ -69,6 +69,9 @@ endfunction
 au FileType perl nmap fm :call EditModule()<CR>
 " / end of finding module in perl sources
 
+" so :tag will works on methods with package prefix
+au Filetype perl set iskeyword=@,48-57,_,192-255 " no : symbol
+
 " mileszs/ack.vim plugin ag support
 if executable('ag') == 1
     let g:ackprg = 'ag --vimgrep --smart-case'

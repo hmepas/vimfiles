@@ -47,9 +47,9 @@ function SetTags()
     if filereadable('./tags')
         let &tags='./tags;'
     else
-        let pr_tags = ProjectRootGuess().'/tags;'
+        let pr_tags = ProjectRootGuess().'/tags'
         if filereadable(pr_tags)
-            let &tags=pr_tags
+            let &tags=pr_tags.';'
         endif
     endif
 endfunction
@@ -407,4 +407,9 @@ hi! link vimNotation Label
 " Better json highlighting
 hi! link htmlArg Label
 
+" Load local vimrc if present
+let local_vimrc_file = $HOME . "/.vim/vimrc.local"
+if filereadable(local_vimrc_file)
+    execute 'source ' . local_vimrc_file
+endif
 

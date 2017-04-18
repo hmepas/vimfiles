@@ -54,6 +54,21 @@ function SetTags()
     endif
 endfunction
 
+" find module in perl INC and edit
+" kudos to davewood http://blogs.perl.org/users/davewood/2012/06/open-module-under-cursor-in-vim.html#comment-162561
+function! EditModule()
+    let cw = expand("<cWORD>")
+    let fname = substitute( system( "perldoc -lm " . cw ), "\n", '', '' )
+    if filereadable( fname )
+        exec "edit " . fname
+    else
+        echo "File not found or not readable (" . fname . ")"
+    endif
+endfunction
+
+au FileType perl nmap fm :call EditModule()<CR>
+" / end of finding module in perl sources
+
 " mileszs/ack.vim plugin ag support
 if executable('ag') == 1
     let g:ackprg = 'ag --vimgrep --smart-case'

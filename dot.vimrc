@@ -21,6 +21,8 @@ Plugin 'jeetsukumaran/vim-markology'
 
 filetype plugin on
 
+let mapleader=","
+
 " Syntastic check
 let g:syntastic_perl_checkers = ['perl']
 let g:syntastic_enable_perl_checker = 1
@@ -80,6 +82,9 @@ cnoreabbrev ag Ack
 cnoreabbrev aG Ack
 cnoreabbrev Ag Ack
 cnoreabbrev AG Ack
+
+" search current under cursor word in project root
+nnoremap <silent> <Leader>* :exe ':Ack! <cword>' projectroot#guess()<cr>
 " / end of mileszs/ack.vim settings
 
 " airline
@@ -316,8 +321,6 @@ let g:user_zen_settings = {
 \    'extends' : 'html',
 \  },
 \}
-
-let mapleader=","
 
 " Vimux
 map <Leader>vp :VimuxPromptCommand<CR>

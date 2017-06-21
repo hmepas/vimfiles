@@ -8,6 +8,7 @@ cp perl_incl ~/bin/
 
 echo "installin vundle"
 git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 echo "installing vundle plugins"
 vim +PluginInstall +qall

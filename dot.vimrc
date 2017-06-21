@@ -18,6 +18,18 @@ Plugin 'dbakker/vim-projectroot.git'
 Plugin 'junkblocker/patchreview-vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'jeetsukumaran/vim-markology'
+Plugin 'junegunn/fzf'
+
+" / VUNDLE SETUP
+
+" Plug setup
+" curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+" then :PluginInstall
+call plug#begin('~/.vim/plugged')
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+call plug#end()
+" / Plug setup
 
 filetype plugin on
 
@@ -77,14 +89,16 @@ au Filetype perl set iskeyword=@,48-57,_,192-255 " no : symbol
 " mileszs/ack.vim plugin ag support
 if executable('ag') == 1
     let g:ackprg = 'ag --vimgrep --smart-case'
+    " since those conflicts wit fzf
+    if executable('fzf') != 1
+        cnoreabbrev ag Ack
+        cnoreabbrev aG Ack
+        cnoreabbrev Ag Ack
+        cnoreabbrev AG Ack
+        " search current under cursor word in project root
+        nnoremap <silent> <Leader>* :exe ':Ack! <cword>' projectroot#guess()<cr>
+    endif
 endif
-cnoreabbrev ag Ack
-cnoreabbrev aG Ack
-cnoreabbrev Ag Ack
-cnoreabbrev AG Ack
-
-" search current under cursor word in project root
-nnoremap <silent> <Leader>* :exe ':Ack! <cword>' projectroot#guess()<cr>
 " / end of mileszs/ack.vim settings
 
 " airline
@@ -105,25 +119,30 @@ let g:airline_powerline_fonts = 1
 "let g:airline_theme = "luna"
 let g:airline_theme = "lucius"
 
-" CtrlP
-nnoremap <c-P> :CtrlPTag<CR>
-let g:ctrlp_max_depth = 20
-let g:ctrlp_max_files = 0
-if executable('ag') == 1
-    let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
-      \ --ignore .git
-      \ --ignore .svn
-      \ --ignore .hg
-      \ --ignore .DS_Store
-      \ --ignore "**/*.pyc"
-      \ -g ""'
+" fzf stuff
+" CtrlP swapped for fzf, overwise fallback to ctrlp
+if executable('fzf') == 1
+    let g:ctrlp_map = '<Leader><c-p>'
+    let g:fzf_buffers_jump = 1
+    let g:fzf_layout = { 'down': '~30%' }
+    nnoremap <silent> <Leader>* :call fzf#vim#ag('<C-R><C-W>', {'down' : '~20%', 'dir': projectroot#guess()})<CR>
+    nnoremap <c-p> :call fzf#vim#files(projectroot#guess())<CR>
 else
-    let g:ctrlp_clear_cache_on_exit=0
-    au Filetype perl let g:ctrlp_user_command = 'find %s -type f -regextype posix-basic -regex ".\+\.p[ml]"'
+    let g:ctrlp_max_depth = 20
+    let g:ctrlp_max_files = 0
+    if executable('ag') == 1
+        let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
+          \ --ignore .git
+          \ --ignore .svn
+          \ --ignore .hg
+          \ --ignore .DS_Store
+          \ --ignore "**/*.pyc"
+          \ -g ""'
+    else
+        let g:ctrlp_clear_cache_on_exit=0
+        au Filetype perl let g:ctrlp_user_command = 'find %s -type f -regextype posix-basic -regex ".\+\.p[ml]"'
+    endif
 endif
-
-" / VUNDLE SETUP
-
 " ORDER IS MATTER, THIS OPTION SHOULD BE FIRST TO AVOID
 " UNECCESSARY CONVERSIONS WHICH COULD BE BROKEN
 set encoding=utf-8
@@ -376,7 +395,7 @@ colors solarized
 " :syntax off
 " :set synmaxcol=120
 " if nothing helps
-set synmaxcol=256
+set synmaxcol=512
 set ttyfast " u got a fast terminal
 set ttyscroll=3
 set lazyredraw " to avoid scrolling problems

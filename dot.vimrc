@@ -18,7 +18,8 @@ Plugin 'dbakker/vim-projectroot.git'
 Plugin 'junkblocker/patchreview-vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'jeetsukumaran/vim-markology'
-Plugin 'junegunn/fzf'
+Plugin 'mhinz/vim-signify'
+Plugin 'Konfekt/FastFold'
 
 " / VUNDLE SETUP
 
@@ -28,6 +29,7 @@ Plugin 'junegunn/fzf'
 call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'vim-perl/vim-perl', { 'for': 'perl' }
 call plug#end()
 " / Plug setup
 
@@ -54,6 +56,9 @@ endfunction
 
 au FileType perl call FixPerlIncludes()
 au FileType perl let g:syntastic_auto_loc_list = 1
+au FileType perl let perl_fold = 1
+au FileType perl let perl_include_pod = 1
+set foldlevelstart=1
 " use dbakker/vim-projectroot.git
 au FileType perl call SetTags()
 
@@ -211,8 +216,6 @@ set softtabstop=4
 
 set pastetoggle=<F2>
 
-let perl_fold = 1
-let perl_include_pod = 1
 let perl_want_scope_in_variables = 1
 let xml_syntax_folding = 1
 
@@ -348,9 +351,6 @@ map <Leader>vl :VimuxRunLastCommand<CR>
 map <Leader>vz :call VimuxZoomRunner()<CR>
 map <Leader>vq :VimuxCloseRunner<CR>
 
-" Pathogen launch
-execute pathogen#infect()
-
 " buffers navigation
 map <Leader>n :bn<CR>
 map <Leader>p :bp<CR>
@@ -404,6 +404,7 @@ set lazyredraw " to avoid scrolling problems
 command Speed call Speed()
 function Speed()
     set nocursorline
+    set foldmethod=indent
     execute ':syntax off'
 endfunction
 " / speedup stuff
@@ -453,3 +454,4 @@ if filereadable(local_vimrc_file)
     execute 'source ' . local_vimrc_file
 endif
 
+let g:signify_vcs_list = [ 'svn', 'git', 'hg' ]

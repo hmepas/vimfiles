@@ -12,3 +12,6 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.c
 
 echo "installing vundle plugins"
 vim +PluginInstall +qall
+
+echo "install plug plugins"
+vim +PlugInstall

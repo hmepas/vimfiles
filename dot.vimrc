@@ -20,6 +20,7 @@ Plugin 'mileszs/ack.vim'
 Plugin 'jeetsukumaran/vim-markology'
 Plugin 'mhinz/vim-signify'
 Plugin 'Konfekt/FastFold'
+Plugin 'tmhedberg/SimpylFold'
 
 " / VUNDLE SETUP
 
@@ -61,6 +62,9 @@ au FileType perl let perl_include_pod = 1
 set foldlevelstart=1
 " use dbakker/vim-projectroot.git
 au FileType perl call SetTags()
+
+" tmhedberg/SimpylFold
+au FileType python let let g:SimpylFold_docstring_preview = 1
 
 function SetTags()
     if filereadable('./tags')
@@ -455,3 +459,8 @@ if filereadable(local_vimrc_file)
 endif
 
 let g:signify_vcs_list = [ 'svn', 'git', 'hg' ]
+
+" yank to clipboard
+if has('clipboard')
+    set clipboard=unnamed " copy to the system clipboard
+endif
